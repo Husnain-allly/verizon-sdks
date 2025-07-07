@@ -1,0 +1,46 @@
+
+# Giosms Send Request
+
+## Structure
+
+`GiosmsSendRequest`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `accountName` | `string \| undefined` | Optional | - |
+| `customFields` | [`KvPair[] \| undefined`](../../doc/models/kv-pair.md) | Optional | **Constraints**: *Maximum Items*: `5` |
+| `dataEncoding` | `string \| undefined` | Optional | - |
+| `groupName` | `string \| undefined` | Optional | - |
+| `servicePlan` | `string \| undefined` | Optional | - |
+| `timeToLive` | `string \| undefined` | Optional | A period of time the message remains valid or an end date for the message. This value would be less than the 5 day default. |
+| `deviceIds` | [`GioDeviceId[] \| undefined`](../../doc/models/gio-device-id.md) | Optional | **Constraints**: *Maximum Items*: `100` |
+| `smsMessage` | `string` | Required | - |
+
+## Example (as JSON)
+
+```json
+{
+  "smsMessage": "A text message",
+  "accountName": "accountName2",
+  "customFields": [
+    {
+      "key": "key0",
+      "value": "value2"
+    },
+    {
+      "key": "key0",
+      "value": "value2"
+    },
+    {
+      "key": "key0",
+      "value": "value2"
+    }
+  ],
+  "dataEncoding": "dataEncoding0",
+  "groupName": "groupName2",
+  "servicePlan": "servicePlan2"
+}
+```
+
