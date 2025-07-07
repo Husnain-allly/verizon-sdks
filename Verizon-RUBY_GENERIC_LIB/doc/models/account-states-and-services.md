@@ -1,0 +1,141 @@
+
+# Account States and Services
+
+Returns a list and details of all custom services and states defined for a specified account.
+
+*This model accepts additional fields of type Object.*
+
+## Structure
+
+`AccountStatesAndServices`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `engagement` | [`Array<Engagement>`](../../doc/models/engagement.md) | Required | The engagements associated with the account. |
+| `additional_properties` | `Hash[String, Object]` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "engagement": [
+    {
+      "engagementId": "1234",
+      "chargingGroup": "Engagement1234",
+      "services": [
+        {
+          "name": "Svc1",
+          "description": "Usage Segmentation - Main Line.",
+          "states": [
+            {
+              "name": "Svc1 Activate",
+              "workflowSequenceNumber": 1.0,
+              "servicePlans": [
+                "4523aef7250f67205fd5",
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            },
+            {
+              "name": "Svc1 No Telematics",
+              "workflowSequenceNumber": 3.0,
+              "servicePlans": [
+                "4523aef7250f67205fd5",
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            },
+            {
+              "name": "Svc1 Deactivate",
+              "workflowSequenceNumber": 2.0,
+              "servicePlans": [
+                "4523aef7250f67205fd5",
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            }
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        {
+          "name": "WIFI",
+          "description": "Usage Segmentation - WiFi.",
+          "states": [
+            {
+              "name": "WIFI Redirect",
+              "workflowSequenceNumber": 2.0,
+              "servicePlans": [
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            },
+            {
+              "name": "WIFI Trial",
+              "workflowSequenceNumber": 4.0,
+              "servicePlans": [
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            },
+            {
+              "name": "WIFI Goodwill",
+              "workflowSequenceNumber": 6.0,
+              "servicePlans": [
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            },
+            {
+              "name": "WIFI Disable",
+              "workflowSequenceNumber": 3.0,
+              "servicePlans": [
+                "4d4090c0f2d48814c94d"
+              ],
+              "exampleAdditionalProperty": {
+                "key1": "val1",
+                "key2": "val2"
+              }
+            }
+          ],
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+

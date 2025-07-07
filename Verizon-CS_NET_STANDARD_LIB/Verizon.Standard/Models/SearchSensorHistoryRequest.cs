@@ -1,0 +1,153 @@
+// <copyright file="SearchSensorHistoryRequest.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
+using Verizon.Standard;
+using Verizon.Standard.Utilities;
+
+namespace Verizon.Standard.Models
+{
+    /// <summary>
+    /// SearchSensorHistoryRequest.
+    /// </summary>
+    public class SearchSensorHistoryRequest
+    {
+        [JsonExtensionData]
+        private readonly IDictionary<string, JToken> additionalProperties;
+
+        private readonly IEnumerable<string> propertyName;
+
+        /// <summary>
+        /// Get or set the value associated with the specified key in the AdditionalProperties dictionary.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set. This must be a valid key that is not reserved for internal properties.</param>
+        /// <returns>The object value associated with the specified key in the AdditionalProperties dictionary.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="key"/> is null or an empty string.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the specified <paramref name="key"/> conflicts with an internal property of the object.
+        /// </exception>
+        /// <exception cref="KeyNotFoundException">
+        /// Thrown when the specified <paramref name="key"/> does not exist in the AdditionalProperties dictionary.
+        /// </exception>
+        [IndexerName("AdditionalPropertiesIndexer")]
+        public object this[string key]
+        {
+            get => additionalProperties.GetValue<object>(key);
+            set => additionalProperties.SetValue(key, value, propertyName);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchSensorHistoryRequest"/> class.
+        /// </summary>
+        public SearchSensorHistoryRequest()
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchSensorHistoryRequest"/> class.
+        /// </summary>
+        /// <param name="accountidentifier">accountidentifier.</param>
+        /// <param name="resourceidentifier">resourceidentifier.</param>
+        /// <param name="mLimitnumber">$limitnumber.</param>
+        /// <param name="mPage">$page.</param>
+        public SearchSensorHistoryRequest(
+            Models.AccountIdentifier accountidentifier,
+            Models.ResourceIdentifier resourceidentifier,
+            int? mLimitnumber = null,
+            string mPage = null)
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+            this.Accountidentifier = accountidentifier;
+            this.Resourceidentifier = resourceidentifier;
+            this.MLimitnumber = mLimitnumber;
+            this.MPage = mPage;
+        }
+
+        /// <summary>
+        /// The ID of the authenticating billing account, in the format `{"billingaccountid":"1234567890-12345"}`.
+        /// </summary>
+        [JsonProperty("accountidentifier")]
+        public Models.AccountIdentifier Accountidentifier { get; set; }
+
+        /// <summary>
+        /// The ID of the target to delete, in the format {"id": "dd1682d3-2d80-cefc-f3ee-25154800beff"}.
+        /// </summary>
+        [JsonProperty("resourceidentifier")]
+        public Models.ResourceIdentifier Resourceidentifier { get; set; }
+
+        /// <summary>
+        /// The maximum number of events to include in the response.
+        /// </summary>
+        [JsonProperty("$limitnumber", NullValueHandling = NullValueHandling.Ignore)]
+        public int? MLimitnumber { get; set; }
+
+        /// <summary>
+        /// The maximum number of events to include in the response.
+        /// </summary>
+        [JsonProperty("$page", NullValueHandling = NullValueHandling.Ignore)]
+        public string MPage { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var toStringOutput = new List<string>();
+            this.ToString(toStringOutput);
+            return $"SearchSensorHistoryRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            return obj is SearchSensorHistoryRequest other &&
+                (this.Accountidentifier == null && other.Accountidentifier == null ||
+                 this.Accountidentifier?.Equals(other.Accountidentifier) == true) &&
+                (this.Resourceidentifier == null && other.Resourceidentifier == null ||
+                 this.Resourceidentifier?.Equals(other.Resourceidentifier) == true) &&
+                (this.MLimitnumber == null && other.MLimitnumber == null ||
+                 this.MLimitnumber?.Equals(other.MLimitnumber) == true) &&
+                (this.MPage == null && other.MPage == null ||
+                 this.MPage?.Equals(other.MPage) == true) &&
+                (this.additionalProperties == null && other.additionalProperties == null ||
+                 this.additionalProperties?.Count == other.additionalProperties?.Count &&
+                 this.additionalProperties?.All(kv =>
+                     other.additionalProperties.TryGetValue(kv.Key, out var value) &&
+                     JToken.DeepEquals(kv.Value, value)) == true);
+        }
+
+        /// <summary>
+        /// ToString overload.
+        /// </summary>
+        /// <param name="toStringOutput">List of strings.</param>
+        protected void ToString(List<string> toStringOutput)
+        {
+            toStringOutput.Add($"Accountidentifier = {(this.Accountidentifier == null ? "null" : this.Accountidentifier.ToString())}");
+            toStringOutput.Add($"Resourceidentifier = {(this.Resourceidentifier == null ? "null" : this.Resourceidentifier.ToString())}");
+            toStringOutput.Add($"MLimitnumber = {(this.MLimitnumber == null ? "null" : this.MLimitnumber.ToString())}");
+            toStringOutput.Add($"MPage = {this.MPage ?? "null"}");
+
+            additionalProperties?
+                .Select(kvp => $"[{kvp.Key}] = {kvp.Value.ToString(Formatting.None)}")
+                .ToList()
+                .ForEach(toStringOutput.Add);
+        }
+    }
+}

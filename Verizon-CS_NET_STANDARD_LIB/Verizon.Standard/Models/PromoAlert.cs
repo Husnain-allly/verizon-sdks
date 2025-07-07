@@ -1,0 +1,141 @@
+// <copyright file="PromoAlert.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
+using Verizon.Standard;
+using Verizon.Standard.Utilities;
+
+namespace Verizon.Standard.Models
+{
+    /// <summary>
+    /// PromoAlert.
+    /// </summary>
+    public class PromoAlert
+    {
+        [JsonExtensionData]
+        private readonly IDictionary<string, JToken> additionalProperties;
+
+        private readonly IEnumerable<string> propertyName;
+
+        /// <summary>
+        /// Get or set the value associated with the specified key in the AdditionalProperties dictionary.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set. This must be a valid key that is not reserved for internal properties.</param>
+        /// <returns>The object value associated with the specified key in the AdditionalProperties dictionary.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="key"/> is null or an empty string.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the specified <paramref name="key"/> conflicts with an internal property of the object.
+        /// </exception>
+        /// <exception cref="KeyNotFoundException">
+        /// Thrown when the specified <paramref name="key"/> does not exist in the AdditionalProperties dictionary.
+        /// </exception>
+        [IndexerName("AdditionalPropertiesIndexer")]
+        public object this[string key]
+        {
+            get => additionalProperties.GetValue<object>(key);
+            set => additionalProperties.SetValue(key, value, propertyName);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromoAlert"/> class.
+        /// </summary>
+        public PromoAlert()
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PromoAlert"/> class.
+        /// </summary>
+        /// <param name="filterCriteria">filterCriteria.</param>
+        /// <param name="condition">condition.</param>
+        /// <param name="enablePromoExp">enablePromoExp.</param>
+        public PromoAlert(
+            List<Models.ReadySimServicePlan> filterCriteria = null,
+            List<Models.Keyschunk2> condition = null,
+            bool? enablePromoExp = null)
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+            this.FilterCriteria = filterCriteria;
+            this.Condition = condition;
+            this.EnablePromoExp = enablePromoExp;
+        }
+
+        /// <summary>
+        /// Gets or sets FilterCriteria.
+        /// </summary>
+        [JsonProperty("filterCriteria", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.ReadySimServicePlan> FilterCriteria { get; set; }
+
+        /// <summary>
+        /// Gets or sets Condition.
+        /// </summary>
+        [JsonProperty("condition", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.Keyschunk2> Condition { get; set; }
+
+        /// <summary>
+        /// Gets or sets EnablePromoExp.
+        /// </summary>
+        [JsonProperty("enablePromoExp", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? EnablePromoExp { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var toStringOutput = new List<string>();
+            this.ToString(toStringOutput);
+            return $"PromoAlert : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            return obj is PromoAlert other &&
+                (this.FilterCriteria == null && other.FilterCriteria == null ||
+                 this.FilterCriteria?.Equals(other.FilterCriteria) == true) &&
+                (this.Condition == null && other.Condition == null ||
+                 this.Condition?.Equals(other.Condition) == true) &&
+                (this.EnablePromoExp == null && other.EnablePromoExp == null ||
+                 this.EnablePromoExp?.Equals(other.EnablePromoExp) == true) &&
+                (this.additionalProperties == null && other.additionalProperties == null ||
+                 this.additionalProperties?.Count == other.additionalProperties?.Count &&
+                 this.additionalProperties?.All(kv =>
+                     other.additionalProperties.TryGetValue(kv.Key, out var value) &&
+                     JToken.DeepEquals(kv.Value, value)) == true);
+        }
+
+        /// <summary>
+        /// ToString overload.
+        /// </summary>
+        /// <param name="toStringOutput">List of strings.</param>
+        protected void ToString(List<string> toStringOutput)
+        {
+            toStringOutput.Add($"FilterCriteria = {(this.FilterCriteria == null ? "null" : $"[{string.Join(", ", this.FilterCriteria)} ]")}");
+            toStringOutput.Add($"Condition = {(this.Condition == null ? "null" : $"[{string.Join(", ", this.Condition)} ]")}");
+            toStringOutput.Add($"EnablePromoExp = {(this.EnablePromoExp == null ? "null" : this.EnablePromoExp.ToString())}");
+
+            additionalProperties?
+                .Select(kvp => $"[{kvp.Key}] = {kvp.Value.ToString(Formatting.None)}")
+                .ToList()
+                .ForEach(toStringOutput.Add);
+        }
+    }
+}
