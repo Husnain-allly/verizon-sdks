@@ -1,0 +1,141 @@
+// <copyright file="ContactInfoUpdateRequest.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
+using Verizon.Standard;
+using Verizon.Standard.Utilities;
+
+namespace Verizon.Standard.Models
+{
+    /// <summary>
+    /// ContactInfoUpdateRequest.
+    /// </summary>
+    public class ContactInfoUpdateRequest
+    {
+        [JsonExtensionData]
+        private readonly IDictionary<string, JToken> additionalProperties;
+
+        private readonly IEnumerable<string> propertyName;
+
+        /// <summary>
+        /// Get or set the value associated with the specified key in the AdditionalProperties dictionary.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set. This must be a valid key that is not reserved for internal properties.</param>
+        /// <returns>The object value associated with the specified key in the AdditionalProperties dictionary.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="key"/> is null or an empty string.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the specified <paramref name="key"/> conflicts with an internal property of the object.
+        /// </exception>
+        /// <exception cref="KeyNotFoundException">
+        /// Thrown when the specified <paramref name="key"/> does not exist in the AdditionalProperties dictionary.
+        /// </exception>
+        [IndexerName("AdditionalPropertiesIndexer")]
+        public object this[string key]
+        {
+            get => additionalProperties.GetValue<object>(key);
+            set => additionalProperties.SetValue(key, value, propertyName);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContactInfoUpdateRequest"/> class.
+        /// </summary>
+        public ContactInfoUpdateRequest()
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContactInfoUpdateRequest"/> class.
+        /// </summary>
+        /// <param name="primaryPlaceOfUse">primaryPlaceOfUse.</param>
+        /// <param name="accountName">accountName.</param>
+        /// <param name="devices">devices.</param>
+        public ContactInfoUpdateRequest(
+            Models.PlaceOfUse primaryPlaceOfUse,
+            string accountName = null,
+            List<Models.AccountDeviceList> devices = null)
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+            this.PrimaryPlaceOfUse = primaryPlaceOfUse;
+            this.AccountName = accountName;
+            this.Devices = devices;
+        }
+
+        /// <summary>
+        /// The customer name and the address of the device's primary place of use. Leave these fields empty to use the account profile address as the primary place of use. These values will be applied to all devices in the request.If the account is enabled for non-geographic MDNs and the device supports it, the primaryPlaceOfUse address will also be used to derive the MDN for the device.
+        /// </summary>
+        [JsonProperty("primaryPlaceOfUse")]
+        public Models.PlaceOfUse PrimaryPlaceOfUse { get; set; }
+
+        /// <summary>
+        /// The name of the billing account that the devices belong to. An account name is usually numeric, and must include any leading zeros.
+        /// </summary>
+        [JsonProperty("accountName", NullValueHandling = NullValueHandling.Ignore)]
+        public string AccountName { get; set; }
+
+        /// <summary>
+        /// A list of the devices that you want to change, specified by device identifier. You only need to provide one identifier per device. Do not include accountName, groupName, customFields, or servicePlan if you use this parameter.
+        /// </summary>
+        [JsonProperty("devices", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.AccountDeviceList> Devices { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var toStringOutput = new List<string>();
+            this.ToString(toStringOutput);
+            return $"ContactInfoUpdateRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            return obj is ContactInfoUpdateRequest other &&
+                (this.PrimaryPlaceOfUse == null && other.PrimaryPlaceOfUse == null ||
+                 this.PrimaryPlaceOfUse?.Equals(other.PrimaryPlaceOfUse) == true) &&
+                (this.AccountName == null && other.AccountName == null ||
+                 this.AccountName?.Equals(other.AccountName) == true) &&
+                (this.Devices == null && other.Devices == null ||
+                 this.Devices?.Equals(other.Devices) == true) &&
+                (this.additionalProperties == null && other.additionalProperties == null ||
+                 this.additionalProperties?.Count == other.additionalProperties?.Count &&
+                 this.additionalProperties?.All(kv =>
+                     other.additionalProperties.TryGetValue(kv.Key, out var value) &&
+                     JToken.DeepEquals(kv.Value, value)) == true);
+        }
+
+        /// <summary>
+        /// ToString overload.
+        /// </summary>
+        /// <param name="toStringOutput">List of strings.</param>
+        protected void ToString(List<string> toStringOutput)
+        {
+            toStringOutput.Add($"PrimaryPlaceOfUse = {(this.PrimaryPlaceOfUse == null ? "null" : this.PrimaryPlaceOfUse.ToString())}");
+            toStringOutput.Add($"AccountName = {this.AccountName ?? "null"}");
+            toStringOutput.Add($"Devices = {(this.Devices == null ? "null" : $"[{string.Join(", ", this.Devices)} ]")}");
+
+            additionalProperties?
+                .Select(kvp => $"[{kvp.Key}] = {kvp.Value.ToString(Formatting.None)}")
+                .ToList()
+                .ForEach(toStringOutput.Add);
+        }
+    }
+}

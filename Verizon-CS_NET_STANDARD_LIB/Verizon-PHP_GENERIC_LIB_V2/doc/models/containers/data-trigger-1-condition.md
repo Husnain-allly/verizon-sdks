@@ -1,0 +1,14 @@
+
+# Data Trigger 1 Condition
+
+## Data Type
+
+`string(ConditionType)|ConditionObjectCall`
+
+## Cases
+
+| Type |
+|  --- |
+| [`string(ConditionType)`](../../../doc/models/condition-type.md) |
+| [`ConditionObjectCall`](../../../doc/models/condition-object-call.md) |
+
