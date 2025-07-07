@@ -1,0 +1,70 @@
+
+# Addressquery
+
+## Structure
+
+`Addressquery`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Address` | [`List<Address>`](../../doc/models/address.md) | Optional | **Constraints**: *Maximum Items*: `5` | List<Address> getAddress() | setAddress(List<Address> address) |
+
+## Example (as JSON)
+
+```json
+{
+  "address": [
+    {
+      "addressLine1": "addressLine18",
+      "addressLine2": "addressLine26",
+      "city": "city6",
+      "state": "state2",
+      "zip": "zip0",
+      "zip4": "zip40",
+      "country": "country0",
+      "phone": "phone4",
+      "phoneType": "phoneType0",
+      "emailAddress": "emailAddress6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "addressLine1": "addressLine18",
+      "addressLine2": "addressLine26",
+      "city": "city6",
+      "state": "state2",
+      "zip": "zip0",
+      "zip4": "zip40",
+      "country": "country0",
+      "phone": "phone4",
+      "phoneType": "phoneType0",
+      "emailAddress": "emailAddress6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "addressLine1": "addressLine18",
+      "addressLine2": "addressLine26",
+      "city": "city6",
+      "state": "state2",
+      "zip": "zip0",
+      "zip4": "zip40",
+      "country": "country0",
+      "phone": "phone4",
+      "phoneType": "phoneType0",
+      "emailAddress": "emailAddress6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ]
+}
+```
+

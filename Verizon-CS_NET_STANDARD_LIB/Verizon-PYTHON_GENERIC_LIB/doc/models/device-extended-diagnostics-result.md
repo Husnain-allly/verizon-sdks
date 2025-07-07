@@ -1,0 +1,48 @@
+
+# Device Extended Diagnostics Result
+
+Result for a request to obtain device extended diagnostics.
+
+*This model accepts additional fields of type Any.*
+
+## Structure
+
+`DeviceExtendedDiagnosticsResult`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `categories` | [`List[DiagnosticsCategory]`](../../doc/models/diagnostics-category.md) | Optional | The response includes various types of information about the device, grouped into categories. Each category object contains the category name and a list of Extended Attribute objects as key-value pairs. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "categories": [
+    {
+      "categoryName": "Connectivity",
+      "extendedAttributes": [
+        {
+          "key": "Connected",
+          "value": "false",
+          "exampleAdditionalProperty": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        }
+      ],
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+

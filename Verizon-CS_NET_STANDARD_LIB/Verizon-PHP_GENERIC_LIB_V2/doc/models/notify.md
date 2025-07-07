@@ -1,0 +1,82 @@
+
+# Notify
+
+*This model accepts additional fields of type array.*
+
+## Structure
+
+`Notify`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `alertType` | `?string` | Optional | - | getAlertType(): ?string | setAlertType(?string alertType): void |
+| `threshold` | [Carriercode1](../../doc/models/carriercode-1.md)[]\|null | Optional | This is Array of a container for any-of cases. | getThreshold(): ?array | setThreshold(?array threshold): void |
+| `additionalProperties` | `array<string, array>` | Optional | - | findAdditionalProperty(string key): array | additionalProperty(string key, array value): void |
+
+## Example (as JSON)
+
+```json
+{
+  "alertType": "individualpriceplan",
+  "threshold": [
+    {
+      "carrierCode": "carrierCode4",
+      "percentage": {
+        "percentage50": false,
+        "percentage75": false,
+        "percentage90": false,
+        "percentage100": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "carrierCode": "carrierCode4",
+      "percentage": {
+        "percentage50": false,
+        "percentage75": false,
+        "percentage90": false,
+        "percentage100": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "carrierCode": "carrierCode4",
+      "percentage": {
+        "percentage50": false,
+        "percentage75": false,
+        "percentage90": false,
+        "percentage100": false,
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      },
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+

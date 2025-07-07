@@ -1,0 +1,42 @@
+
+# Device Software Upgrade
+
+Array of software upgrade objects with the specified status.
+
+*This model accepts additional fields of type object.*
+
+## Structure
+
+`DeviceSoftwareUpgrade`
+
+## Fields
+
+| Name | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `DeviceId` | `string` | Required | Device identifier. |
+| `Id` | `string` | Required | Upgrade identifier. |
+| `AccountName` | `string` | Required | Account identifier. |
+| `SoftwareName` | `string` | Optional | Software name. |
+| `StartDate` | `DateTime` | Required | Software upgrade start date. |
+| `Status` | `string` | Required | Software upgrade status. |
+| `Reason` | `string` | Required | Software upgrade result reason. |
+| `AdditionalProperties` | `object this[string key]` | Optional | - |
+
+## Example (as JSON)
+
+```json
+{
+  "deviceId": "990013907835573",
+  "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+  "accountName": "0402196254-00001",
+  "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+  "startDate": "2018-03-05",
+  "status": "UpgradeSuccess",
+  "reason": "success",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
+}
+```
+

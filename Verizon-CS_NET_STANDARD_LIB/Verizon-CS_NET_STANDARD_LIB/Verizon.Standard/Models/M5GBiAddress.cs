@@ -1,0 +1,201 @@
+// <copyright file="M5GBiAddress.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
+using Verizon.Standard;
+using Verizon.Standard.Utilities;
+
+namespace Verizon.Standard.Models
+{
+    /// <summary>
+    /// M5GBiAddress.
+    /// </summary>
+    public class M5GBiAddress
+    {
+        [JsonExtensionData]
+        private readonly IDictionary<string, JToken> additionalProperties;
+
+        private readonly IEnumerable<string> propertyName;
+
+        /// <summary>
+        /// Get or set the value associated with the specified key in the AdditionalProperties dictionary.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set. This must be a valid key that is not reserved for internal properties.</param>
+        /// <returns>The object value associated with the specified key in the AdditionalProperties dictionary.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="key"/> is null or an empty string.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the specified <paramref name="key"/> conflicts with an internal property of the object.
+        /// </exception>
+        /// <exception cref="KeyNotFoundException">
+        /// Thrown when the specified <paramref name="key"/> does not exist in the AdditionalProperties dictionary.
+        /// </exception>
+        [IndexerName("AdditionalPropertiesIndexer")]
+        public object this[string key]
+        {
+            get => additionalProperties.GetValue<object>(key);
+            set => additionalProperties.SetValue(key, value, propertyName);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="M5GBiAddress"/> class.
+        /// </summary>
+        public M5GBiAddress()
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="M5GBiAddress"/> class.
+        /// </summary>
+        /// <param name="addressLine1">addressLine1.</param>
+        /// <param name="city">city.</param>
+        /// <param name="state">state.</param>
+        /// <param name="zip">zip.</param>
+        /// <param name="zip4">zip+4.</param>
+        /// <param name="phone">phone.</param>
+        /// <param name="phoneType">phoneType.</param>
+        /// <param name="emailAddress">emailAddress.</param>
+        public M5GBiAddress(
+            string addressLine1 = null,
+            string city = null,
+            string state = null,
+            string zip = null,
+            string zip4 = null,
+            string phone = null,
+            string phoneType = null,
+            string emailAddress = null)
+        {
+            this.additionalProperties = new Dictionary<string, JToken>();
+            this.propertyName = this.GetPropertyNames();
+            this.AddressLine1 = addressLine1;
+            this.City = city;
+            this.State = state;
+            this.Zip = zip;
+            this.Zip4 = zip4;
+            this.Phone = phone;
+            this.PhoneType = phoneType;
+            this.EmailAddress = emailAddress;
+        }
+
+        /// <summary>
+        /// Gets or sets AddressLine1.
+        /// </summary>
+        [JsonProperty("addressLine1", NullValueHandling = NullValueHandling.Ignore)]
+        public string AddressLine1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets City.
+        /// </summary>
+        [JsonProperty("city", NullValueHandling = NullValueHandling.Ignore)]
+        public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets State.
+        /// </summary>
+        [JsonProperty("state", NullValueHandling = NullValueHandling.Ignore)]
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets or sets Zip.
+        /// </summary>
+        [JsonProperty("zip", NullValueHandling = NullValueHandling.Ignore)]
+        public string Zip { get; set; }
+
+        /// <summary>
+        /// Gets or sets Zip4.
+        /// </summary>
+        [JsonProperty("zip+4", NullValueHandling = NullValueHandling.Ignore)]
+        public string Zip4 { get; set; }
+
+        /// <summary>
+        /// Gets or sets Phone.
+        /// </summary>
+        [JsonProperty("phone", NullValueHandling = NullValueHandling.Ignore)]
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// Gets or sets PhoneType.
+        /// </summary>
+        [JsonProperty("phoneType", NullValueHandling = NullValueHandling.Ignore)]
+        public string PhoneType { get; set; }
+
+        /// <summary>
+        /// Gets or sets EmailAddress.
+        /// </summary>
+        [JsonProperty("emailAddress", NullValueHandling = NullValueHandling.Ignore)]
+        public string EmailAddress { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var toStringOutput = new List<string>();
+            this.ToString(toStringOutput);
+            return $"M5GBiAddress : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            return obj is M5GBiAddress other &&
+                (this.AddressLine1 == null && other.AddressLine1 == null ||
+                 this.AddressLine1?.Equals(other.AddressLine1) == true) &&
+                (this.City == null && other.City == null ||
+                 this.City?.Equals(other.City) == true) &&
+                (this.State == null && other.State == null ||
+                 this.State?.Equals(other.State) == true) &&
+                (this.Zip == null && other.Zip == null ||
+                 this.Zip?.Equals(other.Zip) == true) &&
+                (this.Zip4 == null && other.Zip4 == null ||
+                 this.Zip4?.Equals(other.Zip4) == true) &&
+                (this.Phone == null && other.Phone == null ||
+                 this.Phone?.Equals(other.Phone) == true) &&
+                (this.PhoneType == null && other.PhoneType == null ||
+                 this.PhoneType?.Equals(other.PhoneType) == true) &&
+                (this.EmailAddress == null && other.EmailAddress == null ||
+                 this.EmailAddress?.Equals(other.EmailAddress) == true) &&
+                (this.additionalProperties == null && other.additionalProperties == null ||
+                 this.additionalProperties?.Count == other.additionalProperties?.Count &&
+                 this.additionalProperties?.All(kv =>
+                     other.additionalProperties.TryGetValue(kv.Key, out var value) &&
+                     JToken.DeepEquals(kv.Value, value)) == true);
+        }
+
+        /// <summary>
+        /// ToString overload.
+        /// </summary>
+        /// <param name="toStringOutput">List of strings.</param>
+        protected void ToString(List<string> toStringOutput)
+        {
+            toStringOutput.Add($"AddressLine1 = {this.AddressLine1 ?? "null"}");
+            toStringOutput.Add($"City = {this.City ?? "null"}");
+            toStringOutput.Add($"State = {this.State ?? "null"}");
+            toStringOutput.Add($"Zip = {this.Zip ?? "null"}");
+            toStringOutput.Add($"Zip4 = {this.Zip4 ?? "null"}");
+            toStringOutput.Add($"Phone = {this.Phone ?? "null"}");
+            toStringOutput.Add($"PhoneType = {this.PhoneType ?? "null"}");
+            toStringOutput.Add($"EmailAddress = {this.EmailAddress ?? "null"}");
+
+            additionalProperties?
+                .Select(kvp => $"[{kvp.Key}] = {kvp.Value.ToString(Formatting.None)}")
+                .ToList()
+                .ForEach(toStringOutput.Add);
+        }
+    }
+}
